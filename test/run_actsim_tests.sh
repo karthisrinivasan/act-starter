@@ -54,7 +54,8 @@ do
 		num=`expr $num + 1`
 
 		# simulate 
-		actsim $i $j < $k > $j.stdout 2> $j.stderr
+		# actsim $i $j < $k > $j.stdout 2> $j.stderr
+		actsim $i $j < $k > $j.stdout 2>/dev/null
 
 		# process actsim output - TODO
         sed -i '' 's/\[.*\]//g' $j.stdout
