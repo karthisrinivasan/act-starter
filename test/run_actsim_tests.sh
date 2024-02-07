@@ -58,12 +58,12 @@ do
 		actsim $i $j < $k > $j.stdout 2>/dev/null
 
 		# process actsim output - TODO
-        sed -i '' 's/\[.*\]//g' $j.stdout
+        sed 's/\[.*\]//g' $j.stdout > $j.processed
 
 		ok=1
 		# test against truth - TODO 
 		# add option to cleanup sim outputs - TODO
-		if ! cmp $j.stdout $l >/dev/null 2>/dev/null
+		if ! cmp $j.processed $l >/dev/null 2>/dev/null
 		then
 			echo 
 			myecho "** FAILED TEST $subdir/$i: stdout"
