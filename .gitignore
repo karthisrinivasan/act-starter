@@ -1,2 +1,3 @@
-
 .actsim_history
+*.stderr
+*.stdout

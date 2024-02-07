@@ -1,7 +1,3 @@
-all: setup runtest
-
-setup: 
-# automatically add src to ACT_PATH
-	@echo "TODO"
+all: runtest
 
 include $(ACT_HOME)/scripts/Makefile.std

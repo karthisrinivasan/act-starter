@@ -3,5 +3,5 @@
 
 Setup: 
 - Export ACT_PATH to point to the src folder.
-- Will automate this in the makefile soon.
+- `export ACT_PATH=$(pwd)/src:$ACT_PATH` if you're in the folder where this README is located.
 
