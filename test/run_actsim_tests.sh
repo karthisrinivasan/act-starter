@@ -27,21 +27,20 @@ myecho()
 }
 
 fail=0
+count=0
 
 myecho " "
 num=0
 lim=10
-count=0
+
+fn_actfile="test.act"
+process_name="test"
+fn_actsim_script="test.actsim"
 
 for subdir in ./*/
 do
-	# echo "hi"
 	if [ -d $subdir ]; then
 		cd "$subdir"
-		i=test.act
-		j=test
-		k=test.actsim
-		l=test.truth
 
 		if [ $num -lt 10 ]
 		then
@@ -50,23 +49,21 @@ do
 			myecho ".[$num]"
 		fi
 
+		# simulate
+		actsim $fn_actfile $process_name < $fn_actsim_script > $process_name.stdout 2> $process_name.stderr
+
+		# strip timing info from log
+        sed 's/\[.*\]//g' $process_name.stdout > $process_name.processed
+
 		count=`expr $count + 1`
 		num=`expr $num + 1`
 
-		# simulate 
-		# actsim $i $j < $k > $j.stdout 2> $j.stderr
-		actsim $i $j < $k > $j.stdout 2>/dev/null
-
-		# process actsim output - TODO
-        sed 's/\[.*\]//g' $j.stdout > $j.processed
-
+		# test whether output matches ground truth and report
 		ok=1
-		# test against truth - TODO 
-		# add option to cleanup sim outputs - TODO
-		if ! cmp $j.processed $l >/dev/null 2>/dev/null
+		if ! cmp $process_name.processed $process_name.truth >/dev/null 2>/dev/null
 		then
 			echo 
-			myecho "** FAILED TEST $subdir/$i: stdout"
+			myecho "** FAILED TEST $subdir$fn_actfile: stdout mismatch"
 			fail=`expr $fail + 1`
 			ok=0
 		fi
@@ -92,7 +89,6 @@ if [ $num -ne 0 ]
 then
 	echo
 fi
-
 
 if [ $fail -ne 0 ]
 then
