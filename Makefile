@@ -6,4 +6,7 @@ all: runtest
 truth:
 	cd test && ./testgen.sh
 
+cleantest:
+	cd test && ./cleantest.sh
+
 include $(ACT_HOME)/scripts/Makefile.std

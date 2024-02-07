@@ -20,6 +20,7 @@ then
     then
         sed 's/\[.*\]//g' temp.out > temp.processed
         mv temp.processed test.truth
+        rm temp.out
         echo "test.truth updated successfully"
     else
         echo "actsim unnatural exit, truth not updated!"
