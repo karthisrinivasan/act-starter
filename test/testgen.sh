@@ -18,8 +18,8 @@ then
 
     if [ $? -eq 0 ] 
     then
-        sed -i '' 's/\[.*\]//g' temp.out
-        mv temp.out test.truth
+        sed 's/\[.*\]//g' temp.out > temp.processed
+        mv temp.processed test.truth
         echo "test.truth updated successfully"
     else
         echo "actsim unnatural exit, truth not updated!"
