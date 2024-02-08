@@ -1,15 +1,37 @@
 import module1;
 import sim;
 
+/*
+ * Demonstration of simple test using locally sequenced sources and sinks
+ */
+
 defproc test ()
 {
-    module1::adders::serial_adder<8> add;
-    sim::source_seq<8,false,4,{0,1,2,3}> src_1;
-    sim::source_seq<8,false,4,{4,5,6,7}> src_2;
-    sim::sink<true, 8> snk_1;
+    // configuration parameters
+    pint outputs = 0;
+    pint D_WIDTH = 8;
+    pint data[4];
+    data = {0, 1, 2, 3};
+    pint res[4];
+    res = {0, 2, 4, 6};
 
-    add.IN1 = src_1.O;
-    add.IN2 = src_2.O;
+    // instantiations
+    module1::adders::serial_adder<D_WIDTH> add;
+    
+    // this exmample only uses sources and sinks with locally defined sequences
+    sim::source_seq_multi<D_WIDTH, 2, 4, data, false> src_i1;
+    sim::source_seq_multi<D_WIDTH, 2, 4, data, false> src_i2;
+    sim::source_seq<D_WIDTH, 4, res, false> oracle;
+    
+    sim::scoreboard_lockstep<D_WIDTH, 2, 1, false> sb;
+    
+    // connections
 
-    add.OUT = snk_1.I;
+    add.IN1 = src_i1.O[0];
+    add.IN2 = src_i2.O[0];
+
+    sb.IN[0] = src_i1.O[1];
+    sb.IN[1] = src_i2.O[1];
+    sb.OUT_D[0] = add.OUT;
+    sb.OUT_M[0] = oracle.O;
 }

@@ -1,13 +1,27 @@
 import module1;
 import sim;
 
+/*
+ * Demonstration of simple test using non-checked sources and sinks
+ *
+ * Since there are no checks going on, this is for debug purposes only.
+ */
+
 defproc test ()
 {
-    module1::adders::serial_adder<8> add;
-    sim::source<8,4> src_1;
-    sim::source<8,3> src_2;
-    sim::sink<true, 8> snk_1;
+    // configurtion parameters
+    pint D_WIDTH = 8;
 
+    // instantiations
+    module1::adders::serial_adder<D_WIDTH> add;
+
+    // sources and sinks only generate 1 token on repeat
+    sim::source<D_WIDTH,4> src_1;
+    sim::source<D_WIDTH,3> src_2;
+
+    sim::sink<true, D_WIDTH> snk_1;
+
+    // connections
     add.IN1 = src_1.O;
     add.IN2 = src_2.O;
 
