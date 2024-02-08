@@ -1,5 +1,7 @@
 SHELL=/usr/bin/env bash
 
+.PHONY: all regression cleantest
+
 all: runtest
 
 regression:
