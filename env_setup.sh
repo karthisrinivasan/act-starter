@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # This needs to be called with source!
 # Executing this script will not work!
