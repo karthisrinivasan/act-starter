@@ -3,7 +3,7 @@ export ACT_PATH:=$(shell pwd)/src:$(ACT_PATH)
 
 all: runtest
 
-truth:
+regression:
 	cd test && ./testgen.sh
 
 cleantest:
