@@ -2,14 +2,14 @@ import module1;
 import sim;
 
 /*
- * Demonstration of simple test using non-checked sources and sinks
+ * Demonstration of simple test using non-checked sources and sinks.
  *
  * Since there are no checks going on, this is for debug purposes only.
  */
 
 defproc test ()
 {
-    // configurtion parameters
+    // configuration parameters
     pint D_WIDTH = 8;
 
     // instantiations

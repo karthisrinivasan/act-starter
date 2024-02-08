@@ -8,18 +8,18 @@ import sim;
 defproc test ()
 {
     // configuration parameters
-    pint outputs = 0;
-    pint input1 = 1;
-    pint input2 = 2;
+    pint file_id_outputs = 0;
+    pint file_id_input1 = 1;
+    pint file_id_input2 = 2;
     pint D_WIDTH = 8;
 
     // instantiations
     module1::adders::serial_adder<D_WIDTH> add;
     
-    // this exmample only uses file sources and sinks
-    sim::source_file_multi<D_WIDTH, 2, input1, false> src_in1;
-    sim::source_file_multi<D_WIDTH, 2, input2, false> src_in2;
-    sim::source_file<D_WIDTH, outputs, false> oracle;
+    // this example only uses file sources and sinks
+    sim::source_file_multi<D_WIDTH, 2, file_id_input1, false> src_in1;
+    sim::source_file_multi<D_WIDTH, 2, file_id_input2, false> src_in2;
+    sim::source_file<D_WIDTH, file_id_outputs, false> oracle;
     
     sim::scoreboard_lockstep<D_WIDTH, 2, 1, false> sb;
     

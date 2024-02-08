@@ -2,13 +2,12 @@ import module1;
 import sim;
 
 /*
- * Demonstration of simple test using locally sequenced sources and sinks
+ * Demonstration of a simple test using locally sequenced sources and sinks.
  */
 
 defproc test ()
 {
     // configuration parameters
-    pint outputs = 0;
     pint D_WIDTH = 8;
     pint data[4];
     data = {0, 1, 2, 3};
@@ -18,7 +17,7 @@ defproc test ()
     // instantiations
     module1::adders::serial_adder<D_WIDTH> add;
     
-    // this exmample only uses sources and sinks with locally defined sequences
+    // this example only uses sources and sinks with locally defined sequences
     sim::source_seq_multi<D_WIDTH, 2, 4, data, false> src_i1;
     sim::source_seq_multi<D_WIDTH, 2, 4, data, false> src_i2;
     sim::source_seq<D_WIDTH, 4, res, false> oracle;

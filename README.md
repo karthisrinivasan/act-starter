@@ -12,11 +12,11 @@ Skeleton repository for ACT projects.
 
 - See `test` for folder structure.
 - Each folder in `test` contains one test case.
-- These folder name can be arbitrary.
+- These folder names can be arbitrary.
 - The act file for testing needs to be named `test.act`.
 - The process for testing needs to be named `test`.
 - The actsim input script needs to be named `test.actsim`.
-- To write a test, either use the verification frameworks included in actsim, or use `make regression` to generate a regression test reference output. You can find examples for both in this repository.
+- To write a test, either use the verification functionality included in actsim's `sim` library, or use `make regression` to generate a regression test reference output. You can find examples for both in this repository.
 - If actsim exits with no errors while generating regression test reference output, the output from actsim will be saved as `test.truth`, which is assumed to be the correct output for further tests.
 - You need to commit all of these files to git if you want the tests to work. All output files generated during the test procedure, which do not need to find their way into git have already been put into the `.gitignore` for your convenience.
 
