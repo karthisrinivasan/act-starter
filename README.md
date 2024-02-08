@@ -23,5 +23,5 @@ Cleaning Test Folders:
 - Run `make cleantest` to delete the generated files from running the test cases.
 
 Accessing ACT Files:
-- To access the namespaces defined in `src` from elsewhere, add the path to the the `src` folder to your `ACT_PATH`.
+- To access the namespaces defined in `src` from elsewhere, add the path to the `src` folder to your `ACT_PATH`.
 - The command is `export ACT_PATH=$(pwd)/src:$ACT_PATH` if you're in the folder where this README is located. 
