@@ -1,4 +1,4 @@
-SHELL=/usr/bin/env bash
+export ACT_PATH:=$(shell ./env_setup.sh --output)
 
 .PHONY: all regression cleantest
 

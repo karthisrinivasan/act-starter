@@ -18,7 +18,19 @@ do
     fi
 done
 
-if [ $found -ne 1 ]
-then
-    export ACT_PATH=$SRC_DIR:$ACT_PATH
+if [[ $* == *--output* ]] then
+    
+    # check if the folder is already in the path
+    if [ $found -eq 1 ]
+    then
+        echo $ACT_PATH
+    else
+        echo $SRC_DIR:$ACT_PATH
+    fi
+
+else
+    if [ $found -ne 1 ]
+    then
+        export ACT_PATH=$SRC_DIR:$ACT_PATH
+    fi
 fi
