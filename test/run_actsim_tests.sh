@@ -57,6 +57,21 @@ do
 
         ok=1
 
+        # check regression tests
+        if [ -f "$process_name.truth" ]; then
+
+            # strip timing from test output
+            sed 's/\[.*\]//g' $process_name.stdout > $process_name.processed
+
+            if ! cmp $process_name.processed $process_name.truth >/dev/null 2>/dev/null
+            then
+                echo 
+                myecho "** FAILED REGRESSION TEST $subdir$fn_actfile: stdout mismatch"
+                fail=`expr $fail + 1`
+                ok=0
+            fi
+        fi
+
         # set the seperator tokens to only newline, so we an iterate over grep output
         oldifs=$IFS
         IFS=$'\n'
