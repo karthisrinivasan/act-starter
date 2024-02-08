@@ -27,5 +27,6 @@ do
     fi
 done
 
+echo
 echo "All tests cleaned."
 echo
