@@ -18,7 +18,8 @@ do
     fi
 done
 
-if [[ $* == *--output* ]] then
+if [[ $* == *--output* ]];
+then
     
     # check if the folder is already in the path
     if [ $found -eq 1 ]
