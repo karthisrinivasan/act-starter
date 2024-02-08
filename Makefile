@@ -5,7 +5,7 @@ export ACT_PATH:=$(shell ./env_setup.sh --output)
 all: runtest
 
 regression:
-	cd test && ./testgen.sh
+	cd test && ./generate_regression_truth.sh
 
 cleantest:
 	cd test && ./cleantest.sh
