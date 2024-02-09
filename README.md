@@ -18,7 +18,7 @@ Skeleton repository for ACT projects.
 - The actsim input script needs to be named `test.actsim`.
 - To write a test, either use the verification functionality included in actsim's `sim` library, or use `make regression` to generate a regression test reference output. You can find examples for both in this repository.
 - If actsim exits with no errors while generating regression test reference output, the output from actsim will be saved as `test.truth`, which is assumed to be the correct output for further tests.
-- You need to commit all of these files to git if you want the tests to work. All output files generated during the test procedure, which do not need to find their way into git have already been put into the `.gitignore` for your convenience.
+- You need to commit all of these files to git if you want the tests to work. All output files generated during the test procedure which do not need to find their way into git have already been put into the `.gitignore` for your convenience.
 
 ## Running Tests
 
