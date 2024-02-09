@@ -67,6 +67,7 @@ do
             cd ..
             echo
             echo
+            myecho " "
             continue 1
         fi
 
@@ -80,6 +81,7 @@ do
             cd ..
             echo
             echo
+            myecho " "
             continue 1
         fi
 
@@ -93,6 +95,7 @@ do
             cd ..
             echo
             echo
+            myecho " "
             continue 1
         fi
 
