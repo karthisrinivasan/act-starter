@@ -13,12 +13,13 @@ found=0
 IFS=':'
 for elem in $ACT_PATH
 do
-    if [[ "$elem" == "$SRC_DIR" ]]; then
+    if [[ "$elem" == "$SRC_DIR" ]]
+    then
         found=1
     fi
 done
 
-if [[ $* == *--output* ]];
+if [[ $* == *--output* ]]
 then
     
     # check if the folder is already in the path

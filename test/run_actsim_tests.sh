@@ -41,7 +41,8 @@ skip_file="skip"
 
 for subdir in ./*/
 do
-    if [ -d $subdir ]; then
+    if [ -d $subdir ]
+    then
         cd "$subdir"
 
         if [ $num -lt 10 ]
@@ -98,7 +99,7 @@ do
         actsim $fn_actfile $process_name < $fn_actsim_script > $process_name.stdout 2> $process_name.stderr
 
         # check if actsim exited abnormally
-        if [ $? -ne 0 ];
+        if [ $? -ne 0 ]
         then
             echo
             myecho "** FAILED TEST $subdir$fn_actfile: abnormal simulator exit **"
@@ -107,7 +108,7 @@ do
         fi
 
         # check regression tests
-        if [ $ok -eq 1 ] && [ -f "$process_name.truth" ]; 
+        if [ $ok -eq 1 ] && [ -f "$process_name.truth" ]
         then
 
             # strip timing from test output
