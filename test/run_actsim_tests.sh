@@ -48,17 +48,27 @@ do
         else
             myecho ".[$num]"
         fi
+        
+        num=`expr $num + 1`
+        count=`expr $count + 1`
+
+        ok=1
 
         # simulate
         actsim $fn_actfile $process_name < $fn_actsim_script > $process_name.stdout 2> $process_name.stderr
 
-        count=`expr $count + 1`
-        num=`expr $num + 1`
-
-        ok=1
+        # check if actsim exited abnormally
+        if [ $? -ne 0 ];
+        then
+            echo
+            myecho "** FAILED TEST $subdir$fn_actfile: abnormal simulator exit **"
+            fail=`expr $fail + 1`
+            ok=0
+        fi
 
         # check regression tests
-        if [ -f "$process_name.truth" ]; then
+        if [ $ok -eq 1 ] && [ -f "$process_name.truth" ]; 
+        then
 
             # strip timing from test output
             sed 's/\[.*\]//g' $process_name.stdout > $process_name.processed
