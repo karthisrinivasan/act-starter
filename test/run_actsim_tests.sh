@@ -27,6 +27,7 @@ myecho()
 }
 
 fail=0
+skipped=0
 count=0
 
 myecho " "
@@ -36,6 +37,7 @@ lim=10
 fn_actfile="test.act"
 process_name="test"
 fn_actsim_script="test.actsim"
+skip_file="skip"
 
 for subdir in ./*/
 do
@@ -53,6 +55,44 @@ do
         count=`expr $count + 1`
 
         ok=1
+
+        # make sure test.act exists
+        if [ ! -f $fn_actfile ]
+        then
+            echo
+            myecho "** SKIPPED TEST $subdir: No act file found **"
+            skipped=`expr $skipped + 1`
+            num=0
+            cd ..
+            echo
+            echo
+            continue 1
+        fi
+
+        # make sure test.actsim exists
+        if [ ! -f $fn_actsim_script ]
+        then
+            echo
+            myecho "** SKIPPED TEST $subdir: No actsim file found **"
+            skipped=`expr $skipped + 1`
+            num=0
+            cd ..
+            echo
+            echo
+            continue 1
+        fi
+
+        if [ -f $skip_file ]
+        then
+            echo
+            myecho "** SKIPPED TEST $subdir: Test was markted to be skipped **"
+            skipped=`expr $skipped + 1`
+            num=0
+            cd ..
+            echo
+            echo
+            continue 1
+        fi
 
         # simulate
         actsim $fn_actfile $process_name < $fn_actsim_script > $process_name.stdout 2> $process_name.stderr
@@ -124,6 +164,18 @@ fi
 
 if [ $fail -ne 0 ]
 then
+    echo
+
+    # check if any tests were skipped
+    if [ $skipped -eq 1 ]
+    then
+        echo "--- 1 test was skipped ---"
+        echo
+    else
+        echo "--- $skipped tests were skipped ---"
+        echo
+    fi
+
     if [ $fail -eq 1 ]
     then
         echo "--- Summary: 1 test failed ---"
@@ -133,6 +185,21 @@ then
     exit 1
 else
     echo
+    echo
+
+    # check if any tests were skipped
+    if [ $skipped -ne 0 ]
+    then
+        if [ $skipped -eq 1 ]
+        then
+            echo "--- 1 test was skipped ---"
+            echo
+        else
+            echo "--- $skipped tests were skipped ---"
+            echo
+        fi
+    fi
+
     echo "SUCCESS! All tests passed."
 fi
 echo
