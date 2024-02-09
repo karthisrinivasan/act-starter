@@ -83,6 +83,7 @@ do
             continue 1
         fi
 
+        # check if the test was marked to be skipped
         if [ -f $skip_file ]
         then
             echo
