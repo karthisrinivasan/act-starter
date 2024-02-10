@@ -24,6 +24,7 @@ then
         echo "test.truth updated successfully"
     else
         echo "actsim unnatural exit, truth not updated!"
+        rm temp.out
         exit 1
     fi
 

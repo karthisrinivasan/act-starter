@@ -1,0 +1,34 @@
+import module1;
+import sim;
+
+/*
+ * Demonstration of simple test using input and golden output files
+ */
+
+defproc test ()
+{
+    // configuration parameters
+    pint file_id_outputs = 0;
+    pint file_id_input1 = 1;
+    pint file_id_input2 = 2;
+    pint D_WIDTH = 8;
+
+    // instantiations
+    module1::adders::serial_adder<D_WIDTH> add;
+    
+    // this example only uses file sources and sinks
+    sim::source_file_multi<D_WIDTH, 2, file_id_input1, false> src_in1;
+    sim::source_file_multi<D_WIDTH, 2, file_id_input2, false> src_in2;
+    sim::source_file<D_WIDTH, file_id_outputs, false> oracle;
+    
+    sim::scoreboard_lockstep<D_WIDTH, 2, 1, false> sb;
+    
+    // port connections
+    add.IN1 = src_in1.O[0];
+    add.IN2 = src_in2.O[0];
+
+    sb.IN[0] = src_in1.O[1];
+    sb.IN[1] = src_in2.O[1];
+    sb.OUT_M[0] = oracle.O;
+    sb.OUT_D[0] = add.OUT;
+}

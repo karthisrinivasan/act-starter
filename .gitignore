@@ -1,3 +1,4 @@
 .actsim_history
 *.stderr
 *.stdout
+*.processed

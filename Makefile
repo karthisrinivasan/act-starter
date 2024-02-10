@@ -1,10 +1,11 @@
-SHELL=/usr/bin/env bash
-export ACT_PATH:=$(shell pwd)/src:$(ACT_PATH)
+export ACT_PATH:=$(shell ./env_setup.sh --output)
+
+.PHONY: all regression cleantest
 
 all: runtest
 
-truth:
-	cd test && ./testgen.sh
+regression:
+	cd test && ./generate_regression_truth.sh
 
 cleantest:
 	cd test && ./cleantest.sh
