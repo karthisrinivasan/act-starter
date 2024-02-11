@@ -1,5 +1,5 @@
-# act-starter
- Skeleton repository for ACT projects. 
+# AMC-refactor
+- Refactoring of AMC cells into standard act repo structure.
 
 ## Organizing ACT Files:
 - Typically, different classes of processes should exist in their own namespaces, defined within their own folders.
