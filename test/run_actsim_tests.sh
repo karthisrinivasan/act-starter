@@ -53,7 +53,7 @@ do
 		actsim $fn_actfile $process_name < $fn_actsim_script > $process_name.stdout 2> $process_name.stderr
 
 		# strip timing info from log
-        sed 's/\[.*\]//g' $process_name.stdout > $process_name.processed
+        sed 's/\[ *[0-9]*\]//g' $process_name.stdout > $process_name.processed
 
 		count=`expr $count + 1`
 		num=`expr $num + 1`

@@ -18,7 +18,7 @@ then
 
     if [ $? -eq 0 ] 
     then
-        sed 's/\[.*\]//g' temp.out > temp.processed
+        sed 's/\[ *[0-9]*\]//g' temp.out > temp.processed
         mv temp.processed test.truth
         rm temp.out
         echo "test.truth updated successfully"
