@@ -1,7 +1,7 @@
 
-namespace gates {
+namespace basic {
 
-    export namespace basic {
+    export namespace gates {
 
     export template<pint SIZE>
     defcell inverter (bool? in; bool! out) 

@@ -1,4 +1,4 @@
-import gates;
+import basic;
 import sim;
 
 /* The top-level process of your design */

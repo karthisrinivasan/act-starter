@@ -1,7 +1,6 @@
-import gates::basic;
+import basic::gates;
 
-
-namespace gates {
+namespace basic {
 
     export namespace buffer {
 
@@ -9,8 +8,8 @@ namespace gates {
     defcell buffer (bool? in[M]; bool! out[M]) 
     { 
         bool a[M];
-        gates::basic::inverter<1> invd[M];
-        gates::basic::inverter<SIZE> invds[M];
+        basic::gates::inverter<1> invd[M];
+        basic::gates::inverter<SIZE> invds[M];
 
         (i:M: invd[i](.in=in[i], .out=a[i]);)
         (i:M: invds[i](.in=a[i], .out=out[i]);)    

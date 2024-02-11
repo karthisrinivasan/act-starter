@@ -1,10 +1,10 @@
-import gates;
+import basic;
 import sim;
 
 defproc test ()
 {   
     bool i, o;
-    gates::basic::inverter<8> inv;
+    basic::gates::inverter<8> inv;
     inv.in = i;
     inv.out = o;
 }
