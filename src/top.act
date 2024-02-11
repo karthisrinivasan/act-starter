@@ -1,17 +1,9 @@
-import module1;
+import gates;
 import sim;
 
 /* The top-level process of your design */
 
 defproc top ()
 {
-    module1::adders::serial_adder<8> add;
-    sim::source<8,4> src_1;
-    sim::source<8,3> src_2;
-    sim::sink<true, 8> snk_1;
 
-    add.IN1 = src_1.O;
-    add.IN2 = src_2.O;
-
-    add.OUT = snk_1.I;
 }

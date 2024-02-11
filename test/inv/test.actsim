@@ -1,0 +1,6 @@
+watch i
+watch o
+set i 1
+cycle
+set i 0
+cycle

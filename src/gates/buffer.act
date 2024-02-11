@@ -1,0 +1,20 @@
+import gates::basic;
+
+
+namespace gates {
+
+    export namespace buffer {
+
+    export template <pint M, SIZE>
+    defcell buffer (bool? in[M]; bool! out[M]) 
+    { 
+        bool a[M];
+        gates::basic::inverter<1> invd[M];
+        gates::basic::inverter<SIZE> invds[M];
+
+        (i:M: invd[i](.in=in[i], .out=a[i]);)
+        (i:M: invds[i](.in=a[i], .out=out[i]);)    
+    }
+
+    }
+}

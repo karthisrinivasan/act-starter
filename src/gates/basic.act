@@ -1,0 +1,52 @@
+
+namespace gates {
+
+    export namespace basic {
+
+    export template<pint SIZE>
+    defcell inverter (bool? in; bool! out) 
+    { 
+        prs{ 
+            in<4*SIZE> -> out-
+            ~in<8*SIZE> -> out+
+            }
+    }
+
+    export defcell nand2 (bool? A, B; bool! out) 
+    { 
+        prs
+        {    
+            ~A<8> | ~B<8> -> out+
+             A<8> &  B<8> -> out-
+        }
+    }
+
+    export defcell nand3 (bool? A, B, C; bool! out) 
+    { 
+        prs
+        {    
+            ~A<12> | ~B<12> | ~C<12> -> out+
+             A<8>  &  B<8>  &  C<8>  -> out-
+        }
+    }
+
+    export defcell nor2 (bool? A, B; bool! out) 
+    { 
+        prs
+        {    
+            ~A<16> & ~B<16> -> out+
+             A<4>  |  B<4>  -> out-
+        }
+    }
+
+    export defcell nor3 (bool? A, B, C; bool! out) 
+    { 
+        prs
+        {    
+            ~A<16> & ~B<16> & ~C<16> -> out+
+             A<4>  |  B<4>  |  C<4>  -> out-
+        }
+    }
+
+    }
+}
