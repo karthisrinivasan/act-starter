@@ -10,14 +10,10 @@ SRC_DIR=$SCRIPT_DIR/src
 
 found=0
 
-IFS=':'
-for elem in $ACT_PATH
-do
-    if [[ "$elem" == "$SRC_DIR" ]]
-    then
-        found=1
-    fi
-done
+if [[ ":$ACT_PATH:" == *":$SRC_DIR:"* ]]
+then
+    found=1
+fi
 
 if [[ $* == *--output* ]]
 then
