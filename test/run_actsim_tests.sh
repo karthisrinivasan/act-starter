@@ -74,7 +74,6 @@ do
 			then
 				echo 
 				myecho " "
-				num=0
 			fi
 		else
 			echo " **"
