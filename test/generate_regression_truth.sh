@@ -12,19 +12,19 @@ then
     i=test.act
     j=test
     k=test.actsim
+    new_reg=new_regression.truth
 
     # simulate 
-    actsim $i $j < $k > temp.out 2>/dev/null
+    actsim $i $j < $k > $new_reg 2>/dev/null
 
     if [ $? -eq 0 ] 
     then
         sed 's/\[.*\]//g' temp.out > temp.processed
         mv temp.processed test.truth
-        rm temp.out
+        rm $new_reg
         echo "test.truth updated successfully"
     else
         echo "actsim unnatural exit, truth not updated!"
-        rm temp.out
         exit 1
     fi
 
