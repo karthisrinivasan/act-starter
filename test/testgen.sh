@@ -14,14 +14,15 @@ then
     k=test.actsim
 
     # simulate 
-    actsim $i $j < $k > temp.out 2>/dev/null
+    actsim $i $j < $k > temp.out 2>temperr.out
 
     if [ $? -eq 0 ] 
     then
         sed 's/\[ *[0-9]*\]//g' temp.out > temp.processed
         mv temp.processed test.truth
         rm temp.out
-        echo "test.truth updated successfully"
+        mv temperr.out test.errtruth
+        echo "test.truth & test.errtruth updated successfully"
     else
         echo "actsim unnatural exit, truth not updated!"
         exit 1

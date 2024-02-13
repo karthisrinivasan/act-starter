@@ -1,7 +1,15 @@
 SHELL=/usr/bin/env bash
 export ACT_PATH:=$(shell pwd)/src:$(ACT_PATH)
 
-all: runtest
+all: test
+
+# run all tests, checking stdout and stderr against their true versions
+test:
+	cd test && ./run.sh 1
+
+# run all tests, checking only stdout against its true version
+test_relaxed:
+	cd test && ./run.sh 0
 
 truth:
 	cd test && ./testgen.sh
@@ -9,4 +17,4 @@ truth:
 cleantest:
 	cd test && ./cleantest.sh
 
-include $(ACT_HOME)/scripts/Makefile.std
+.PHONY: test test_relaxed cleantest truth 

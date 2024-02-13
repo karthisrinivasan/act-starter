@@ -2,4 +2,4 @@
 
 # other kinds of tests here, if required...
 
-./run_actsim_tests.sh
+./run_actsim_tests.sh $1

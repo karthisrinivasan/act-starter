@@ -1,5 +1,7 @@
 #!/bin/sh
 
+stderr_check=$1
+
 echo
 echo "***********************************************************"
 echo "*                 Testing with actsim                     *"
@@ -66,6 +68,18 @@ do
 			myecho "** FAILED TEST $subdir$fn_actfile: stdout mismatch"
 			fail=`expr $fail + 1`
 			ok=0
+		fi
+
+		if [ $stderr_check -eq 1 ]
+		then
+			# test whether output error file matches ground truth and report
+			if ! cmp $process_name.stderr $process_name.errtruth >/dev/null 2>/dev/null
+			then
+				echo 
+				myecho "** FAILED TEST $subdir$fn_actfile: stderr mismatch"
+				fail=`expr $fail + 1`
+				ok=0
+			fi
 		fi
 
 		if [ $ok -eq 1 ]
