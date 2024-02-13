@@ -1,5 +1,5 @@
-# AMC-refactor
-- Refactoring of AMC cells into standard act repo structure.
+# act-starter
+- Skeleton repository for ACT projects.
 
 ## Organizing ACT Files:
 - Typically, different classes of processes should exist in their own namespaces, defined within their own folders.
@@ -13,10 +13,11 @@
 - The process for testing needs to be named `test`.
 - The actsim input script needs to be named `test.actsim`.
 - Once a new test is set up this way, run `make truth` and input the folder name.
-- If actsim exits with no errors, the output from actsim will be saved as `test.truth`, which is assumed to be the correct output.
+- If actsim exits with no errors, the output files from actsim will be saved as `test.truth` and `test.errtruth`, which are assumed to be the correct output.
 
 ## Running Tests:
-- Run `make runtest` or simply `make` to run through all test cases.
+- Run `make test` or simply `make` to run through all test cases.
+- Run `make test_relaxed` to run through test cases without checking the `.stderr` files.  
 
 ## Cleaning Test Folders:
 - Run `make cleantest` to delete the generated files from running the test cases.
