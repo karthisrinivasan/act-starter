@@ -46,7 +46,7 @@ fn_actsim_script="test.actsim"
 
 for subdir in ./*/
 do
-	if [ -d $subdir ]; then
+	if [ -d $subdir ] && ([ -z "$ACT_TEST_FILTER_REGEX" ] || ([ -n "$ACT_TEST_FILTER_REGEX" ] && [[ $subdir =~ $ACT_TEST_FILTER_REGEX ]])); then
 		cd "$subdir"
 
 		if [ $num -lt 10 ]
