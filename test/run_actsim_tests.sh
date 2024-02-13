@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 stderr_check=$1
 
@@ -27,9 +27,9 @@ myecho()
   fi
   if [ $check_echo -eq 1 ]
   then
-	echo -n "$@"
+	echo -e -n "$@"
   else
-	echo "$@\c"
+	echo -e "$@\c"
   fi
 }
 
@@ -72,11 +72,11 @@ do
 			myecho "** ${txtred}FAILED TEST${txtreset} $subdir$fn_actfile: stdout mismatch"
 			echo
 			if [ ${ACT_TEST_VERBOSE} -eq 1 ]; then
-				echo "${txtbold}stdout:${txtreset}"
+				echo -e "${txtbold}stdout:${txtreset}"
 				cat $process_name.processed
-				echo "${txtbold}truth:${txtreset}"
+				echo -e "${txtbold}truth:${txtreset}"
 				cat $process_name.truth
-				echo "${txtbold}stderr:${txtreset}"
+				echo -e "${txtbold}stderr:${txtreset}"
 				cat $process_name.stderr
 			fi
 			fail=`expr $fail + 1`
@@ -120,13 +120,13 @@ if [ $fail -ne 0 ]
 then
 	if [ $fail -eq 1 ]
 	then
-		echo "--- ${txtred}1 test failed.${txtreset} ---"
+		echo -e "--- ${txtred}1 test failed.${txtreset} ---"
 	else
-		echo "--- ${txtred}$fail tests failed.${txtreset} ---"
+		echo -e "--- ${txtred}$fail tests failed.${txtreset} ---"
 	fi
 	exit 1
 else
 	echo
-	echo "--- ${txtgreen}All tests passed.${txtreset} ---"
+	echo -e "--- ${txtgreen}All tests passed.${txtreset} ---"
 fi
 echo
