@@ -8,6 +8,11 @@ echo "*                 Testing with actsim                     *"
 echo "***********************************************************"
 echo
 
+txtgreen='\e[32m'
+txtred="\e[31m"
+txtbold="\e[1m"
+txtreset="\e[0m"
+
 check_echo=0
 myecho()
 {
@@ -64,8 +69,16 @@ do
 		ok=1
 		if ! cmp $process_name.processed $process_name.truth >/dev/null 2>/dev/null
 		then
-			echo 
-			myecho "** FAILED TEST $subdir$fn_actfile: stdout mismatch"
+			myecho "** ${txtred}FAILED TEST${txtreset} $subdir$fn_actfile: stdout mismatch"
+			echo
+			if [ ${ACT_TEST_VERBOSE} -eq 1 ]; then
+				echo "${txtbold}stdout:${txtreset}"
+				cat $process_name.processed
+				echo "${txtbold}truth:${txtreset}"
+				cat $process_name.truth
+				echo "${txtbold}stderr:${txtreset}"
+				cat $process_name.stderr
+			fi
 			fail=`expr $fail + 1`
 			ok=0
 		fi
@@ -107,13 +120,13 @@ if [ $fail -ne 0 ]
 then
 	if [ $fail -eq 1 ]
 	then
-		echo "--- Summary: 1 test failed ---"
+		echo "--- ${txtred}1 test failed.${txtreset} ---"
 	else
-		echo "--- Summary: $fail tests failed ---"
+		echo "--- ${txtred}$fail tests failed.${txtreset} ---"
 	fi
 	exit 1
 else
 	echo
-	echo "SUCCESS! All tests passed."
+	echo "--- ${txtgreen}All tests passed.${txtreset} ---"
 fi
 echo
