@@ -8,10 +8,10 @@ echo "*                 Testing with actsim                     *"
 echo "***********************************************************"
 echo
 
-txtgreen='\e[32m'
-txtred="\e[31m"
-txtbold="\e[1m"
-txtreset="\e[0m"
+txtgreen='\033[0;32m'
+txtred="\033[0;31m"
+txtbold="\033[0;33m"
+txtreset="\033[0;37m"
 
 check_echo=0
 myecho()
