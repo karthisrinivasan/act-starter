@@ -127,6 +127,9 @@ do
             fi
         fi
 
+        # remove the processed output again
+        rm -f $process_name.processed
+
         # set the seperator tokens to only newline, so we an iterate over grep output
         oldifs=$IFS
         IFS=$'\n'
@@ -136,6 +139,16 @@ do
         do
             echo
             myecho "** FAILED TEST $subdir$fn_actfile: $(echo $line | sed 's/\[.*TEST FAILED ([[:digit:]]*): //g') **"
+            num=0
+            fail=`expr $fail + 1`
+            ok=0
+        done
+
+        # check if there are any assertion failures reported in the sim log and report
+        for line in $(grep "ASSERTION failed" "$process_name.stdout")
+        do
+            echo
+            myecho "** FAILED TEST $subdir$fn_actfile: $(echo $line | sed 's/\[.*ASSERTION failed: //g') **"
             num=0
             fail=`expr $fail + 1`
             ok=0
