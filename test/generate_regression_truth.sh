@@ -19,8 +19,8 @@ then
 
     if [ $? -eq 0 ] 
     then
-        sed 's/\[.*\]//g' temp.out > temp.processed
-        mv temp.processed test.truth
+        sed 's/\[.*\]//g' $new_reg > $new_reg.processed
+        mv $new_reg.processed test.truth
         rm $new_reg
         echo "test.truth updated successfully"
     else
