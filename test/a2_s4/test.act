@@ -1,5 +1,6 @@
 import module1;
 import sim;
+import globals;
 
 /*
  * Demonstration of simple test using input and golden output files
@@ -9,19 +10,18 @@ defproc test ()
 {
     // configuration parameters
     pint file_id_outputs = 0;
-    pint file_id_input1 = 1;
-    pint file_id_input2 = 2;
+    pint file_id_input = 1;
     pint D_WIDTH = 8;
 
     // instantiations
     module1::adders::serial_adder<D_WIDTH> add;
     
     // this example only uses file sources and sinks
-    sim::source_file_multi<D_WIDTH, 2, file_id_input1, false> src_in1;
-    sim::source_file_multi<D_WIDTH, 2, file_id_input2, false> src_in2;
-    sim::source_file<D_WIDTH, file_id_outputs, false> oracle;
+    sim::source_file_multi<D_WIDTH, 2, file_id_input, false, 1, false> src_in1;
+    sim::source_file_multi<D_WIDTH, 2, file_id_input, false, 2, false> src_in2;
+    sim::source_file<D_WIDTH, file_id_outputs, false, 0, false> oracle;
     
-    sim::scoreboard_lockstep<D_WIDTH, 2, 1, false> sb;
+    sim::scoreboard::lockstep<D_WIDTH, 2, 1, 0, true> sb;
     
     // port connections
     add.IN1 = src_in1.O[0];
@@ -31,4 +31,9 @@ defproc test ()
     sb.IN[1] = src_in2.O[1];
     sb.OUT_M[0] = oracle.O;
     sb.OUT_D[0] = add.OUT;
+
+    // enable sources
+    src_in1.enable = Vdd;
+    src_in2.enable = Vdd;
+    oracle.enable = Vdd;
 }
