@@ -1,0 +1,37 @@
+act:read "ring_top.act"
+act:merge "cells.act"
+act:expand
+act:top ring_top
+ckt:cell-map
+
+ckt:map 
+load-scm "phydb.scm"
+phydb:create 3.0 1  "layout/output.lef"
+
+dali:init 3
+dali:place-design 0.5
+dali:place-io "m1"
+dali:export-phydb
+dali:close
+
+phydb:write-aux-rect "layout/output"
+phydb:update-lef "layout/output"
+phydb:write-def "layout/output.def"
+
+pwroute:init 3
+pwroute:set_reinforcement 0
+pwroute:run
+pwroute:export-phydb
+pwroute:close
+
+sproute:init 0
+sproute:run
+sproute:close
+
+phydb:write-guide "layout/output.guide"  
+
+phydb:write-def "layout/output.def"   
+phydb:write-aux-rect "layout/output"
+phydb:update-lef "layout/output"     
+
+exit

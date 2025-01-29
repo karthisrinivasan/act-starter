@@ -1,0 +1,8 @@
+act:read "ring_top.act"
+act:expand
+act:top ring_top
+
+ckt:cell-map
+ckt:cell-save "cells.act"
+
+exit

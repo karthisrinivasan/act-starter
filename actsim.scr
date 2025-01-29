@@ -1,0 +1,7 @@
+set Reset 1 
+advance 10000
+
+set Reset 0
+advance 10000
+
+exit

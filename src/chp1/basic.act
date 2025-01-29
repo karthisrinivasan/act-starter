@@ -1,0 +1,37 @@
+
+namespace chp1 {
+
+    export namespace basic {
+
+        export template <pint BW>
+        defproc buf (chan?(int<BW>) L; chan!(int<BW>) R)
+        {
+            int<BW> x;
+            chp {
+                *[ 
+                    L?x; R!x
+                ]
+            }
+        }
+
+        export template <pint BW, V>
+        defproc source (chan!(int<BW>) C)
+        {
+            pint v = V;
+            chp {
+                *[ C!v ]
+            }
+        }
+
+        export template <pint BW>
+        defproc sink (chan?(int<BW>) C)
+        {
+            int<BW> v;
+            chp {
+                *[ C?v; log(v) ]
+            }
+        }
+
+    }
+    
+}

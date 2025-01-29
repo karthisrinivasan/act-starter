@@ -1,9 +1,12 @@
 import basic;
 import sim;
+import chp1;
 
 /* The top-level process of your design */
 
 defproc top ()
 {
-
+    chp1::basic::buf<8> b;
+    chp1::basic::source<8, 42> sr(b.L);
+    chp1::basic::sink<8> sn(b.R);
 }
